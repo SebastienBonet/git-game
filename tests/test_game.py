@@ -12,18 +12,18 @@ class TestGame(unittest.TestCase):
         for letter in grid:
             self.assertIn(letter, string.ascii_uppercase)
 
-    def test_empty_word(self):
+    def test_empty_word_is_invalid(self):
         new_game = Game()
         self.assertIs(new_game.is_valid(''), False)
 
-    def test_word_is_valid(self):
+    def test_is_valid(self):
         new_game = Game()
-        new_game.grid = list('TWEUTAKSZ')
-        self.assertIs(new_game.is_valid('TEST'), True)
-        self.assertEqual(new_game.grid, list('TWEUTAKSZ'))
+        new_game.grid = list('KWEUEAKRZ') # Force the grid to a test case:
+        self.assertIs(new_game.is_valid('EUREKA'), True)
+        self.assertEqual(new_game.grid, list('KWEUEAKRZ')) # Make sure the grid remained untouched
 
-    def test_word_is_not_valid(self):
+    def test_is_invalid(self):
         new_game = Game()
-        new_game.grid = list('TWEUTAKSZ')
-        self.assertIs(new_game.is_valid('TEYUST'), False)
-        self.assertEqual(new_game.grid, list('TWEUTAKSZ'))
+        new_game.grid = list('KWEUEAKRZ') # Force the grid to a test case:
+        self.assertIs(new_game.is_valid('SANDWICH'), False)
+        self.assertEqual(new_game.grid, list('KWEUEAKRZ')) # Make sure the grid remained untouched
