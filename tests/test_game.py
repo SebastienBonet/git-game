@@ -21,3 +21,9 @@ class TestGame(unittest.TestCase):
         new_game.grid = list('TWEUTAKSZ')
         self.assertIs(new_game.is_valid('TEST'), True)
         self.assertEqual(new_game.grid, list('TWEUTAKSZ'))
+
+    def test_word_is_not_valid(self):
+        new_game = Game()
+        new_game.grid = list('TWEUTAKSZ')
+        self.assertIs(new_game.is_valid('TEYUST'), False)
+        self.assertEqual(new_game.grid, list('TWEUTAKSZ'))
